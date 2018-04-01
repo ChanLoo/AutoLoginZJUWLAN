@@ -8,14 +8,15 @@ import urllib
 from urllib.request import urlopen, Request, URLError, HTTPError
 from termcolor import colored, cprint  
 
-username = '******'
-password = '******'
+username = '18158519623@ZJUA.XY'
+password = '137048'
 
 data = {'action':'login','username':username,'password':password,'ac_id':'3','user_ip':'','nas_ip':'','user_mac':'','save_me':'1','ajax':'1'}
 data = urllib.parse.urlencode(data)
+
 try:
     req = Request('https://net.zju.edu.cn/srun_portal_pc.php?url=&ac_id=3')
-    response = urlopen(req, data, timeout=10)
+    response = urlopen(req, data.encode('utf-8'), timeout=10)
     content = response.read()
     response.close()
 except URLError as e:
