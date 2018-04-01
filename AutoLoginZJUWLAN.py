@@ -3,7 +3,7 @@
 author: ChanLo
 e-mail: chanlo@protonmail.ch
 '''
-
+import Detection
 import urllib
 from urllib.request import urlopen, Request, URLError, HTTPError
 from termcolor import colored, cprint  
@@ -19,7 +19,11 @@ def main():
         req = Request('https://net.zju.edu.cn/srun_portal_pc.php?url=&ac_id=3')
         with urlopen(req, data.encode('utf-8'), timeout=10) as response:
             content = response.read()
-            print('Login Successfully!')
+            detection = Detection.Detection()
+            if detection.isConnected():
+                print('Login Successfully!')
+            else:
+                print('Connection fail.')
 
     except URLError as e:
         if hasattr(e, 'reason'):
