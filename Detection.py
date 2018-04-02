@@ -13,7 +13,7 @@ class Detection(object):
     def __init__(self):
         self.test_url = 'http://cn.bing.com'
 
-    def isConnected(self):
+    def is_connected(self):
         '''
         Detect whether the connection is connected.
         '''
@@ -30,6 +30,12 @@ class Detection(object):
             return True
         else:
             return False
+
+    def wlan_available(self, wlan_name):
+        pass
+
+    def wlan_connected(wlan_name):
+        pass
 
 if __name__ == '__main__':
     detecttion = Detection()

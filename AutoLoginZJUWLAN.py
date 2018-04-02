@@ -8,8 +8,8 @@ import urllib
 from urllib.request import urlopen, Request, URLError, HTTPError
 from termcolor import colored, cprint  
 
-username = '******'
-password = '******'
+username = '18158519623@ZJUA.XY'
+password = '198868'
 
 data = {'action':'login','username':username,'password':password,'ac_id':'3','user_ip':'','nas_ip':'','user_mac':'','save_me':'1','ajax':'1'}
 data = urllib.parse.urlencode(data)
@@ -19,8 +19,9 @@ def main():
         req = Request('https://net.zju.edu.cn/srun_portal_pc.php?url=&ac_id=3')
         with urlopen(req, data.encode('utf-8'), timeout=10) as response:
             content = response.read()
+            cprint('Checking network status...', 'green')
             detection = Detection.Detection()
-            if detection.isConnected():
+            if detection.is_connected():
                 print('Login Successfully!')
             else:
                 print('Connection fail.')
