@@ -11,13 +11,13 @@ class Crypto(object):
     def __init__(self):
         pass
 
-    def encrypt(self, key):
+    def encrypt(self, key, text):
         pass
 
     def decrypt(self, key):
         pass
     
-    def generate_key():
+    def generate_key(self):
         import uuid
         import sys
         from binascii import unhexlify as unhex
@@ -33,7 +33,15 @@ class Crypto(object):
         hi_time = up[12:16]
         key = hi_time + mac
         return unhex(key)
-        
+
+    def _ipconfig_getnode(self):
+        pass
+
+    def _ifconfig_getnode(self):
+        pass
+
+    def _random_getnode(self):
+        pass
 
 if __name__ == '__main__':
     crypto = Crypto()
