@@ -8,9 +8,7 @@ import urllib
 from urllib.request import urlopen, Request, URLError, HTTPError
 from termcolor import colored, cprint  
 
-username = '18158519623@ZJUA.XY'
-password = '198868'
-
+nameDB = 'UserDB'
 data = {'action':'login','username':username,'password':password,'ac_id':'3','user_ip':'','nas_ip':'','user_mac':'','save_me':'1','ajax':'1'}
 data = urllib.parse.urlencode(data)
 
