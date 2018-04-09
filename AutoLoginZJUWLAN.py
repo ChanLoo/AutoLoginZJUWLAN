@@ -14,12 +14,12 @@ use_account = 0
 is_use_existing_account = True
 aim_id = 1
 
-def if_use_existing_account():
+def if_use_existing_account(use_account):
     while(use_account != 'Y' and use_account !='N'):
         use_account = input('Use existing account? (Y/N)\n')
         if use_account == 'Y':
             return True
-        else use_account == 'N':
+        if use_account == 'N':
             return False
 
 def get_user_UP():
@@ -30,7 +30,7 @@ def get_user_UP():
 def main():
     print('Hi, there.\n')
     UPSave = DataSave.UPSave()
-    if not if_use_existing_account():
+    if not if_use_existing_account(use_account):
         username, password = get_user_UP()
         UPSave.create_DB(name_DB)
         UPSave.insert_to_DB(name_DB, username, password)

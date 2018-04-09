@@ -26,7 +26,7 @@ class Detection(object):
         except URLError as e:
             return False
         
-        if code == 200 and 'net.zju.edu.cn/srun_port1.php' is not resUrl:
+        if code == 200 and 'net.zju.edu.cn/srun_port1.php'  not in resUrl:
             return True
         else:
             return False
