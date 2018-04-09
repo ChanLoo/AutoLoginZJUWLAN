@@ -26,7 +26,7 @@ class Detection(object):
         except URLError as e:
             return False
         
-        if code == 200 and 'net.zju.edu.cn/srun_port1.php'  not in resUrl:
+        if code == 200 and 'net.zju.edu.cn' not in content.decode():
             return True
         else:
             return False
@@ -39,7 +39,7 @@ class Detection(object):
 
 if __name__ == '__main__':
     detecttion = Detection()
-    if detecttion.isConnected():
+    if detecttion.is_connected():
         print('Connection is established.')
     else:
         print('Connection fail.')

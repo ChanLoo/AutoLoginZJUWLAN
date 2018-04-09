@@ -8,6 +8,7 @@ import DataSave
 import urllib
 from urllib.request import urlopen, Request, URLError, HTTPError
 from termcolor import colored, cprint  
+from time import sleep
 
 name_DB = 'UserDB'
 use_account = 0
@@ -16,7 +17,8 @@ aim_id = 1
 
 def if_use_existing_account(use_account):
     while(use_account != 'Y' and use_account !='N'):
-        use_account = input('Use existing account? (Y/N)\n')
+        use_account = input('Use existing account?(Y/N)  ')
+        print('\n')
         if use_account == 'Y':
             return True
         if use_account == 'N':
@@ -28,10 +30,13 @@ def get_user_UP():
     return username, password
 
 def main():
-    print('Hi, there.\n')
+    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-', 'yellow')
+    cprint('-*-*-* Hi, there.*-*-*-*-', 'yellow')
+    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-\n', 'yellow')
     UPSave = DataSave.UPSave()
     if not if_use_existing_account(use_account):
         username, password = get_user_UP()
+        UPSave.delete_DB(name_DB)
         UPSave.create_DB(name_DB)
         UPSave.insert_to_DB(name_DB, username, password)
     else:
@@ -42,12 +47,13 @@ def main():
         req = Request('https://net.zju.edu.cn/srun_portal_pc.php?url=&ac_id=3')
         with urlopen(req, data.encode('utf-8'), timeout=10) as response:
             content = response.read()
-            cprint('Checking network status...', 'green')
+            cprint('Checking network status...\n', 'green')
+            sleep(1)
             detection = Detection.Detection()
             if detection.is_connected():
-                print('Login Successfully!')
+                cprint('Login Successfully!', 'red')
             else:
-                print('Connection fail.')
+                cprint('Connection fail.', 'green')
 
     except URLError as e:
         if hasattr(e, 'reason'):
