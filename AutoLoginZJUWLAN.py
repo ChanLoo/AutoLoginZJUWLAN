@@ -6,6 +6,8 @@ e-mail: chanlo@protonmail.ch
 import Detection
 import DataSave
 import urllib
+import msvcrt
+import sys
 from urllib.request import urlopen, Request, URLError, HTTPError
 from termcolor import colored, cprint  
 from time import sleep
@@ -28,6 +30,22 @@ def get_user_UP():
     username = input('User name: ')
     password = input('Password: ')
     return username, password
+
+def password_input(msg):
+    print(msg)
+    password = []
+    while(True):
+        pwd_char = msvcrt.getch()
+        if pwd_char is '\n':
+            print('')
+        elif pwd_char == '\b':
+            if chars:
+                del password[-1]
+                print('\b \b')
+        else:
+            password.append(pwd_char)
+            print('*')
+    return ''.join(password)
 
 def main():
     cprint('-*-*-*-*-*-*-*-*-*-*-*-*-', 'yellow')
@@ -70,6 +88,8 @@ def main():
 
 if __name__ == '__main__':
     try:
-        main()
+        #main()
+        pwd = password_input('Password: ')
+        print(pwd)
     except KeyboardInterrupt as e:
         cprint('/n[INFO] PROGRAM EXIT.', 'green')
