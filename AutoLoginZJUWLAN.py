@@ -19,7 +19,7 @@ aim_id = 1
 
 def if_use_existing_account(use_account):
     while(use_account != 'Y' and use_account !='N'):
-        use_account = input('Use existing account?(Y/N)  ')
+        use_account = input('Use existing account?(Y/N) ')
         print('\n')
         if use_account == 'Y':
             return True
@@ -28,29 +28,30 @@ def if_use_existing_account(use_account):
 
 def get_user_UP():
     username = input('User name: ')
-    password = input('Password: ')
+    password = password_input('Password: ')
     return username, password
 
 def password_input(msg):
-    print(msg)
+    sys.stdout.write(msg)
     password = []
     while(True):
-        pwd_char = msvcrt.getch()
-        if pwd_char is '\n':
+        pwd_char = msvcrt.getch().decode()
+        if pwd_char in '\r\n':
             print('')
-        elif pwd_char == '\b':
+            break
+        elif pwd_char is '\b':
             if chars:
                 del password[-1]
                 print('\b \b')
         else:
             password.append(pwd_char)
-            print('*')
+            sys.stdout.write('*')
     return ''.join(password)
 
 def main():
-    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-', 'yellow')
-    cprint('-*-*-* Hi, there.*-*-*-*-', 'yellow')
-    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-\n', 'yellow')
+    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-', 'yellow')
+    cprint('-*-*-*-*-* Hi, there.*-*-*-*-*-*-', 'yellow')
+    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n', 'yellow')
     UPSave = DataSave.UPSave()
     if not if_use_existing_account(use_account):
         username, password = get_user_UP()
@@ -88,8 +89,6 @@ def main():
 
 if __name__ == '__main__':
     try:
-        #main()
-        pwd = password_input('Password: ')
-        print(pwd)
+        main()
     except KeyboardInterrupt as e:
         cprint('/n[INFO] PROGRAM EXIT.', 'green')
