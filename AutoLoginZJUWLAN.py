@@ -18,12 +18,12 @@ is_use_existing_account = True
 aim_id = 1
 
 def if_use_existing_account(use_account):
-    while(use_account != 'Y' and use_account !='N'):
-        use_account = input('Use existing account?(Y/N) ')
+    while(use_account != 'y' and use_account !='n'):
+        use_account = input('Use existing account?(y/n) ')
         print('\n')
-        if use_account == 'Y':
+        if use_account == 'y':
             return True
-        if use_account == 'N':
+        if use_account == 'n':
             return False
 
 def get_user_UP():
@@ -32,7 +32,7 @@ def get_user_UP():
     return username, password
 
 def password_input(msg):
-    sys.stdout.write(msg)
+    print(msg, end='', flush=True)
     password = []
     while(True):
         pwd_char = msvcrt.getch().decode()
@@ -40,18 +40,23 @@ def password_input(msg):
             print('')
             break
         elif pwd_char is '\b':
-            if chars:
+            if password:
                 del password[-1]
-                print('\b \b')
+                print('\b \b', end='', flush=True)
         else:
             password.append(pwd_char)
-            sys.stdout.write('*')
+            print('*', end='', flush=True)
     return ''.join(password)
 
 def main():
-    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-', 'yellow')
-    cprint('-*-*-*-*-* Hi, there.*-*-*-*-*-*-', 'yellow')
-    cprint('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n', 'yellow')
+    cprint('+-------------------------------+', 'yellow')
+    cprint('|                               |', 'yellow')
+    cprint('|        Welcome, ZJUer!        |', 'yellow')
+    cprint('|                               |', 'yellow')
+    cprint('|    Auto Login ZJUWLAN (v1)    |', 'yellow')
+    cprint('|       create by ChanLo        |', 'yellow')
+    cprint('|                               |', 'yellow')
+    cprint('+-------------------------------+\n', 'yellow')
     UPSave = DataSave.UPSave()
     if not if_use_existing_account(use_account):
         username, password = get_user_UP()
